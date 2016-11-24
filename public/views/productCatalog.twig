@@ -1,0 +1,45 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+  <h2 class="page-header">{{title}}</h2>
+  {% if errors %}
+      {% for error in errors %}
+        <div class="alert alert-danger">{{ error.msg }}</div>
+      {% endfor %}
+  
+  {% endif %}
+  <form method="post" action="/productCatalog">
+      <div class="wrapper">
+        <div class="row">
+      {% if productList %}
+      {% for prod in productList %}
+        <div class="col-md-4 well">
+                <img src="">
+                <label>Product Name:{{prod.local.productName}}</label>
+                <label>Product Description:{{prod.local.productDesc}}</label>
+                <label>Product Price:{{prod.local.productPrice}}</label>
+                <label>Available Quantity:{{prod.local.productQuantity}}</label>
+                <label>Enter purchase quantity:<input type="text" name="itemQuantity" id={{prod._id + 'z'}} size="1"></label>
+                <a href="/addToCart?userId=abc&prodId={{prod._id}}"class="btn btn-primary">Add-to-cart</a>
+               <!-- <button id={{prod._id + 'y'}}>Add-to-cart</button>-->
+            </div>
+      {% endfor %}
+  
+  {% endif %}
+  
+        </div>
+    </div>
+  </form>
+{% endblock %}
+
+<script>
+  function addToCart () {
+      $(document).ready(function(){
+        $('button').click(function(){
+          
+        })
+      })
+  }
+</script>
+
+
